@@ -3,17 +3,24 @@ pipeline {
     stages {
         stage("Compile") {
             steps {
-                sh "./gradlew compileJava"
+                // *** 이 부분을 추가하거나 수정합니다. ***
+                dir('calculator') { // 1. calculator 디렉토리로 이동
+                    sh "./gradlew compileJava"
+                }
             }
         }
         stage("Build") {
             steps {
-                sh "./gradlew build"
+                dir('calculator') { // 2. Build 단계도 동일하게 수정
+                    sh "./gradlew build"
+                }
             }
         }
         stage("Unit test") {
             steps {
-                sh "./gradlew test"
+                dir('calculator') { // 3. Unit test 단계도 동일하게 수정
+                    sh "./gradlew test"
+                }
             }
         }
     }
