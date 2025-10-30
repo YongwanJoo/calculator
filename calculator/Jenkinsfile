@@ -1,5 +1,12 @@
 pipeline {
-    agent any
+    agent {
+            // Java 17이 설치된 공식 OpenJDK 이미지를 사용합니다.
+            docker {
+                image 'openjdk:17-jdk'
+                // root 사용자로 실행 권한 문제를 방지하는 옵션
+                args '-u root'
+            }
+        }
     stages {
         stage("Compile") {
             steps {
